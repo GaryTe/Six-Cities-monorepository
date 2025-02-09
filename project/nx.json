@@ -36,7 +36,18 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/users-e2e/**/*"]
+      "exclude": [
+        "apps/users-e2e/**/*",
+        "user-e2e/**/*",
+        "apps/users/src/app/user-e2e/**/*"
+      ]
     }
-  ]
+  ],
+  "targetDefaults": {
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    }
+  }
 }

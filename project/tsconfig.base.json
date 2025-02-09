@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@project/config": ["libs/config/src/index.ts"],
+      "@project/const": ["libs/const/src/index.ts"],
+      "@project/enum": ["libs/enum/src/index.ts"],
+      "@project/error-validatio": ["libs/error-validatio/src/index.ts"],
+      "@project/interface": ["libs/interface/src/index.ts"],
+      "@project/util": ["libs/util/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
