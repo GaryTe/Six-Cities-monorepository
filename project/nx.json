@@ -39,7 +39,8 @@
       "exclude": [
         "apps/users-e2e/**/*",
         "user-e2e/**/*",
-        "apps/users/src/app/user-e2e/**/*"
+        "apps/users/src/app/user-e2e/**/*",
+        "apps/publications-e2e/**/*"
       ]
     }
   ],

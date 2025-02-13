@@ -1,38 +1,38 @@
 import {IsNumber, IsString, Max, Min} from 'class-validator';
 
 import {MIN_PORT, MAX_PORT} from '@project/const';
-import {EnvValidationMessage} from '@project/error-validatio';
+import {EnvValidationMessageForDatabaseUser} from '@project/error-validatio';
 
 export class DatabaseUserEnvironment {
   @IsString({
-    message: EnvValidationMessage.MongoUser
+    message: EnvValidationMessageForDatabaseUser.MongoUser
   })
   public userName: string;
 
   @IsString({
-    message: EnvValidationMessage.MongoPassword
+    message: EnvValidationMessageForDatabaseUser.MongoPassword
   })
   public password: string;
 
    @IsString({
-    message: EnvValidationMessage.MongoHost
+    message: EnvValidationMessageForDatabaseUser.MongoHost
   })
   public host: string;
 
   @IsNumber({}, {
-    message: EnvValidationMessage.MongoPort
+    message: EnvValidationMessageForDatabaseUser.MongoPort
   })
-  @Min(MIN_PORT, {message: EnvValidationMessage.MongoPort})
-  @Max(MAX_PORT, {message: EnvValidationMessage.MongoPort})
+  @Min(MIN_PORT, {message: EnvValidationMessageForDatabaseUser.MongoPort})
+  @Max(MAX_PORT, {message: EnvValidationMessageForDatabaseUser.MongoPort})
   public port: number;
 
   @IsString({
-    message: EnvValidationMessage.MongoDB
+    message: EnvValidationMessageForDatabaseUser.MongoDB
   })
   dataBase: string;
 
   @IsString({
-    message: EnvValidationMessage.MongoAuthSource
+    message: EnvValidationMessageForDatabaseUser.MongoAuthSource
   })
   public authSource: string;
 }

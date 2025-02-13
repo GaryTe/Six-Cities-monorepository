@@ -7,17 +7,17 @@ import {
 } from 'class-validator';
 
 import {MIN_PORT, MAX_PORT} from '@project/const';
-import {EnvValidationMessageForAppUser} from '@project/error-validatio';
+import {EnvValidationMessageForAppPublication} from '@project/error-validatio';
 import {TypeEnvironment} from '@project/enum';
 
-export class ApplicationUserEnvironment {
+export class ApplicationPublicationEnvironment {
    @IsString({
-    message: EnvValidationMessageForAppUser.Host
+    message: EnvValidationMessageForAppPublication.AppHost
   })
   public host: string;
 
   @IsNumber({}, {
-    message: EnvValidationMessageForAppUser.Port
+    message: EnvValidationMessageForAppPublication.AppPort
   })
   @Min(MIN_PORT)
   @Max(MAX_PORT)
@@ -26,13 +26,8 @@ export class ApplicationUserEnvironment {
   @IsEnum(
     TypeEnvironment,
     {
-      message: EnvValidationMessageForAppUser.Environment
+      message: EnvValidationMessageForAppPublication.Environment
     }
   )
   public environment: string;
-
-  @IsString({
-    message: EnvValidationMessageForAppUser.Salt
-  })
-  public salt: string;
 }
