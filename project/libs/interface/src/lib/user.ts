@@ -12,4 +12,8 @@ export interface ApplicationConfigUser {
   port: number;
   environment: string;
   salt: string;
+  jwtAlgorithm: string;
+  typ: string;
+  jwtAccessExpired: string;
+  staticDirectory: string;
 }

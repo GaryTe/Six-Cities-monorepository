@@ -35,4 +35,24 @@ export class ApplicationUserEnvironment {
     message: EnvValidationMessageForAppUser.Salt
   })
   public salt: string;
+
+  @IsString({
+    message: EnvValidationMessageForAppUser.JwtAlgorithm
+  })
+  public jwtAlgorithm: string;
+
+  @IsString({
+    message: EnvValidationMessageForAppUser.Typ
+  })
+  public typ: string;
+
+  @IsString({
+    message: EnvValidationMessageForAppUser.JwtAccessExpired
+  })
+  public jwtAccessExpired: string;
+
+  @IsString({
+    message: EnvValidationMessageForAppUser.StaticDirectory
+  })
+  public staticDirectory: string;
 }

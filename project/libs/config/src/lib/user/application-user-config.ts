@@ -11,7 +11,11 @@ export default registerAs('application', (): ApplicationConfigUser => {
     host: process.env.HOST,
     port: parseInt(process.env.PORT, 10) || DEFAULT_APPLICATION_PORT,
     environment: process.env.NODE_ENV,
-    salt: process.env.SALT
+    salt: process.env.SALT,
+    jwtAlgorithm: process.env.JWT_ALGORITHM,
+    typ: process.env.TYP,
+    jwtAccessExpired: process.env.JWT_ACCESS_EXPIRED,
+    staticDirectory: process.env.STATIC_DIRECTORY
   };
 
   const applicationEnvironment = plainToInstance(

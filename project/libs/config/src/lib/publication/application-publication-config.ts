@@ -10,7 +10,9 @@ export default registerAs('application', (): ApplicationConfigPublicatin => {
   const applicationConfigPublication: ApplicationConfigPublicatin = {
     host: process.env.HOST,
     port: parseInt(process.env.PORT, 10) || DEFAULT_APPLICATION_PUBLICATION_PORT,
-    environment: process.env.NODE_ENV
+    environment: process.env.NODE_ENV,
+    salt: process.env.SALT,
+    staticDirectory: process.env.STATIC_DIRECTORY
   };
 
   const applicationEnvironment = plainToInstance(

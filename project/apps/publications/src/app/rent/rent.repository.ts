@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 
 import {appDataSource} from '@project/config';
 import {CreateRentDto} from './dto/create-rent.dto';
+import {EditingRentDto} from './dto/editing-rent.dto';
 import {getPreparedData} from '@project/util';
-import {COUNT, VALUE_SORTING} from '@project/const';
+import {COUNT, VALUE_SORTING, COUNT_RENT_PREMIUM} from '@project/const';
 
 @Injectable()
 export class RentRepository {
@@ -60,7 +61,7 @@ public async getAllRent(limit: string) {
     return dataRentList
 }
 
-public async editing(dto: CreateRentDto, idRent: string) {
+public async editing(dto: EditingRentDto, idRent: string) {
   const preparedData = getPreparedData(dto)
 
   const dataRent = await appDataSource.manager.query(`
@@ -112,5 +113,74 @@ public async show(idRent: string) {
     `)
 
   return dataRent.find((item) => item);
+}
+
+public async rentsPremiumList(city: string) {
+  const dataRentsPremiumList = await appDataSource.manager.query(`
+    SELECT
+      rent.id,
+      rent.create_at,
+      rent.name,
+      rent.city,
+      rent.prevertering_image,
+      rent.premium,
+      rent.favorites,
+      rent.type_housing,
+      rent.price_rent,
+      SUM(comment.rating) AS "rating",
+      COUNT(comment.id) AS "numberComments"
+      FROM rent LEFT JOIN comment
+      ON rent.id::text = comment.id_rent
+	  WHERE rent.premium IS TRUE AND rent.city = '${city}'
+	  GROUP BY rent.id
+    ORDER BY create_at ${VALUE_SORTING}
+    LIMIT ${COUNT_RENT_PREMIUM}
+    `);
+
+  return dataRentsPremiumList.find((item) => item);
+}
+
+public async rentsFavoritList(idUser: string) {
+    const dataRentsFavoritList = await appDataSource.manager.query(`
+      SELECT
+        rent.id,
+        rent.create_at,
+        rent.name,
+        rent.city,
+        rent.prevertering_image,
+        rent.favorites,
+        rent.type_housing,
+        rent.price_rent,
+        SUM(comment.rating) AS "rating",
+        COUNT(comment.id) AS "numberComments"
+      FROM rent LEFT JOIN comment
+      ON rent.id::text = comment.id_rent
+	    WHERE rent.favorites IS TRUE AND rent.favorites_id_user = '${idUser}'
+	    GROUP BY rent.id
+      `);
+
+    return dataRentsFavoritList;
+  }
+
+public async creatRentFavorite(idUser: string, idRent: string) {
+    const dataRentFavorite = await appDataSource.manager.query(`
+      WITH dataComment AS (
+      SELECT
+          SUM(comment.rating) AS "rating",
+          COUNT(comment.id) AS "numberComments"
+          FROM comment
+          WHERE comment.id_rent = '${idRent}'
+      )
+      UPDATE rent
+      SET
+        favorites = CASE WHEN rent.favorites IS TRUE THEN false ELSE true END,
+        favorites_id_user = CASE WHEN rent.favorites_id_user IS NOT NULL THEN null ELSE '${idUser}' END
+      FROM dataComment
+      WHERE rent.id = '${idRent}'
+      RETURNING
+      *
+      `);
+
+    return dataRentFavorite.find((item) => item)
 }
 }

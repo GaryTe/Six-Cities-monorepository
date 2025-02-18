@@ -14,5 +14,5 @@ export class CommentRdo {
   public rating: number;
 
   @Expose({name: 'idUser'})
-  public authorOffers: string;
+  public authorComment: string;
 }
