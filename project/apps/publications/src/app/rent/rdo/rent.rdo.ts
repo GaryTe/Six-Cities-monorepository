@@ -50,7 +50,7 @@ export class RentRdo {
   @Expose()
   public comfort: ComfortList[];
 
-  @Expose({name: 'id_user'})
+  @Expose()
   public authorOffers: string;
 
   @Expose()

@@ -19,7 +19,7 @@ export class BriefDataRentRdo {
   public preverteringImage: string;
 
   @Expose()
-  public premium: boolean;
+  public favorites: boolean;
 
   @Transform(({ value }) => value ?? 0)
   @Expose()

@@ -30,4 +30,14 @@ export class ApplicationPublicationEnvironment {
     }
   )
   public environment: string;
+
+  @IsString({
+      message: EnvValidationMessageForAppPublication.Salt
+    })
+    public salt: string;
+
+  @IsString({
+      message: EnvValidationMessageForAppPublication.StaticDirectory
+    })
+    public staticDirectory: string;
 }

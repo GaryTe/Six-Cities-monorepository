@@ -1,0 +1,20 @@
+{
+  "name": "functions-validation",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/functions-validation/functions-validation/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/functions-validation/functions-validation",
+        "tsConfig": "libs/functions-validation/functions-validation/tsconfig.lib.json",
+        "packageJson": "libs/functions-validation/functions-validation/package.json",
+        "main": "libs/functions-validation/functions-validation/src/index.ts",
+        "assets": ["libs/functions-validation/functions-validation/*.md"]
+      }
+    }
+  }
+}

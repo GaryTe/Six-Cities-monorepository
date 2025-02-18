@@ -59,6 +59,13 @@ export class Rent {
     @Column({type: 'text', name: 'id_user'})
     public idUser!: string;
 
+    @Column({
+      type: 'text',
+      name: 'favorites_id_user',
+      nullable: true
+    })
+    public favoritesIdUser!: string
+
     @Column({type: 'double precision', array: true})
     public coordinates!: [number, number];
 }

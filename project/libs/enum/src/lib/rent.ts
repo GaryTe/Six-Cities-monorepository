@@ -30,3 +30,12 @@ export const RentKey = {
   comfort: 'comfort',
   coordinates: 'coordinates',
 } as const;
+
+export enum TypeCity {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}

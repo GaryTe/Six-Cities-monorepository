@@ -1,15 +1,22 @@
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {ConfigService} from '@nestjs/config';
+import express from 'express';
 
 import { AppModule } from './app/app.module';
-import {GLOBAL_PREFIX} from '@project/const';
+import {GLOBAL_PREFIX, PATH_STATIC_ICON} from '@project/const';
 import { dataSource } from '@project/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix(GLOBAL_PREFIX);
+  app.useGlobalPipes(new ValidationPipe());
   const configService = app.get(ConfigService);
+
+  app.use(
+    `/${GLOBAL_PREFIX}${PATH_STATIC_ICON}`,
+    express.static(configService.get<string>('application.staticDirectory'))
+  );
 
   (await dataSource(
     configService.get<string>('database.host'),
