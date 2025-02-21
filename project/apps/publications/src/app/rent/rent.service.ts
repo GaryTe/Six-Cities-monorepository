@@ -1,15 +1,17 @@
-import {
-  Injectable
- } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
+ import {AmqpConnection} from '@golevelup/nestjs-rabbitmq';
 
 import {RentRepository} from './rent.repository';
 import {CreateRentDto} from './dto/create-rent.dto';
 import {EditingRentDto} from './dto/editing-rent.dto';
+import {EXCHANG_NAME, ROUTING_KEY} from '@project/const';
+import {getDataUsersList} from '@project/util';
 
 @Injectable()
 export class RentService {
   constructor(
-    private readonly rentRepository: RentRepository
+    private readonly rentRepository: RentRepository,
+    private readonly amqpConnection: AmqpConnection
   ){}
 
   public async create(dto: CreateRentDto) {
@@ -43,7 +45,9 @@ export class RentService {
   public async show(idRent: string) {
       const dataRent = await this.rentRepository.show(idRent);
 
-      return dataRent
+      const _dataRentsList = await getDataUsersList(this.amqpConnection, [dataRent])
+
+      return _dataRentsList.find((rent) => rent);
   }
 
   public async rentsPremiumList(city: string) {

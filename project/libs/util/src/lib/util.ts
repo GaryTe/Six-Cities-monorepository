@@ -1,8 +1,10 @@
 import {plainToInstance, ClassConstructor} from 'class-transformer';
 import * as crypto from 'node:crypto';
+import {AmqpConnection} from '@golevelup/nestjs-rabbitmq';
 
-import {RentDto} from '@project/type';
+import {RentDto, Author, Comment, Rent} from '@project/type';
 import {RentKey} from '@project/enum';
+import {EXCHANG_NAME, ROUTING_KEY} from '@project/const';
 
 export const createSHA256 = (line: string, salt: string): string => {
   const shaHasher = crypto.createHmac('sha256', salt);
@@ -37,4 +39,32 @@ export const getPreparedData = (dto: RentDto) => {
     });
 
     return dataRent.join(',')
+}
+
+export const getDataUsersList = async (amqpConnection: AmqpConnection, dataPublicationsList: Comment[] | Rent[]) => {
+  const _dataPublicationsList: Comment[] | Rent[] = []
+
+  const dataUsersList = await amqpConnection.request<Author[]>({
+    exchange: EXCHANG_NAME,
+    routingKey: ROUTING_KEY,
+    payload: dataPublicationsList
+  })
+  .then((dataUsersList) => dataUsersList)
+  .catch(() => [])
+
+  if(dataUsersList.length === 0) {
+    return dataPublicationsList
+  }
+
+  dataPublicationsList.forEach((comment) => {
+    for(const user of dataUsersList) {
+      if(user._id === comment.id_user) {
+        comment.author = user;
+        _dataPublicationsList.push(comment)
+        return;
+      }
+    }
+  })
+
+  return _dataPublicationsList;
 }

@@ -7,10 +7,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjFlZjZlM
 
 {
   "text": "For Saratov",
-  "rating": 3,
+  "rating": 5,
   "idRent": "94df4f26-e5e4-49f6-8bff-809f339787ee"
 }
 
 ###
 ## Список комментариев
-GET  http://localhost:5000/api/comment/94df4f26-e5e4-49f6-8bff-809f339787ee HTTP/1.1
+GET  http://localhost:5000/api/comment/d7cecf35-038c-426a-aebc-4a9d41f8c40e HTTP/1.1

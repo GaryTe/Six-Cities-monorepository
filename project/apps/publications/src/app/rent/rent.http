@@ -48,7 +48,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjFlZjZlM
 
 ###
 ## Получение детальной информации по аренде
-GET http://localhost:5000/api/rent/127f5fe8-257e-4cce-9af9-05f5e99af262 HTTP/1.1
+GET http://localhost:5000/api/rent/a29e9792-419d-4c11-9a58-013e0ce68349 HTTP/1.1
 
 ###
 ## Список предложений по аренде
