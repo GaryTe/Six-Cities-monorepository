@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import {RabbitRPC} from '@golevelup/nestjs-rabbitmq';
 
 import {UserDto} from './dto/user.dto';
 import {AuthenticationUserDto} from './dto/authentication-user.dto';
 import {UserRepository} from './user.repository';
-import {PATH_STATIC_ICON} from '@project/const';
+import {PATH_STATIC_ICON, EXCHANG_NAME, ROUTING_KEY} from '@project/const';
 import {CreateAccessToken} from './create-access-token';
+import {Comment, Author} from '@project/type';
 
 @Injectable()
 export class UserService {
@@ -38,5 +40,19 @@ export class UserService {
     const deleteCount = await this.userRepository.delete(tokenPayload)
 
     return deleteCount;
+  }
+
+  @RabbitRPC({
+    exchange: EXCHANG_NAME,
+    routingKey: ROUTING_KEY,
+    queue: '',
+    queueOptions: {
+      exclusive: true
+    }
+  })
+  public async dataUsersList(payload: Comment[]) {
+    const dataUsersList = await this.userRepository.dataUsersList(payload)
+
+    return dataUsersList;
   }
 }

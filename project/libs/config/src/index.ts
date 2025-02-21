@@ -15,3 +15,9 @@ export * from './lib/publication/get-postgres-options';
 export * from './lib/publication/connection-postgres';
 export * from './lib/publication/rent.shema';
 export * from './lib/publication/comment.shema';
+
+export * from './lib/rabbitmq/config-rabbitmq.module';
+export * from './lib/rabbitmq/get-rabbitmq-options';
+export * from './lib/rabbitmq/rabbitmq-environment';
+export { default as configRabbitmq} from './lib/rabbitmq/rabbitmq-config';
+

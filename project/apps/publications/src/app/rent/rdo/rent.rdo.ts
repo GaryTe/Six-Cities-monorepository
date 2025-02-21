@@ -1,7 +1,8 @@
-import {Expose, Transform} from 'class-transformer';
+import {Expose, Transform, Type} from 'class-transformer';
 
 import {TypeHousing} from '@project/enum';
 import { ComfortList } from '@project/type';
+import {UserRto} from './user.rdo';
 
 export class RentRdo {
   @Expose()
@@ -51,7 +52,8 @@ export class RentRdo {
   public comfort: ComfortList[];
 
   @Expose()
-  public authorOffers: string;
+  @Type(() => UserRto)
+  public author: UserRto;
 
   @Expose()
   public numberComments: number;
