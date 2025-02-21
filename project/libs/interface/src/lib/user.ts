@@ -16,4 +16,5 @@ export interface ApplicationConfigUser {
   typ: string;
   jwtAccessExpired: string;
   staticDirectory: string;
+  uploadDirectory: string;
 }

@@ -4,7 +4,6 @@ import {Injectable} from '@nestjs/common';
 import {RentRepository} from './rent.repository';
 import {CreateRentDto} from './dto/create-rent.dto';
 import {EditingRentDto} from './dto/editing-rent.dto';
-import {EXCHANG_NAME, ROUTING_KEY} from '@project/const';
 import {getDataUsersList} from '@project/util';
 
 @Injectable()

@@ -1,0 +1,20 @@
+{
+  "name": "upload-file",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/upload-file/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/upload-file",
+        "tsConfig": "libs/upload-file/tsconfig.lib.json",
+        "packageJson": "libs/upload-file/package.json",
+        "main": "libs/upload-file/src/index.ts",
+        "assets": ["libs/upload-file/*.md"]
+      }
+    }
+  }
+}

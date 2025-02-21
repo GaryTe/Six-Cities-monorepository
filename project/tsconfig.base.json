@@ -25,11 +25,13 @@
       "@project/interface": ["libs/interface/src/index.ts"],
       "@project/jwt": ["libs/jwt/jwt/src/index.ts"],
       "@project/type": ["libs/type/src/index.ts"],
+      "@project/upload-file": ["libs/upload-file/src/index.ts"],
       "@project/user-functions-interceptor": [
         "libs/functions-interceptor/user-functions-interceptor/src/index.ts"
       ],
       "@project/util": ["libs/util/src/index.ts"]
-    }
+    },
+    "esModuleInterop": true
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -7,10 +7,13 @@ import {
   Inject,
   UseInterceptors,
   UseGuards,
-  Req
+  Req,
+  UploadedFile
 } from '@nestjs/common';
 import {ConfigType} from '@nestjs/config';
-import {Request} from 'express'
+import {Request, Express} from 'express'
+import {FileInterceptor} from '@nestjs/platform-express';
+import 'multer';
 
 import {UserDto} from './dto/user.dto';
 import {AuthenticationUserDto} from './dto/authentication-user.dto';
@@ -24,6 +27,8 @@ import {
   CheckUserDatabaseInterceptor
 } from './functions.interceptor';
 import {CheckAccessTokenGuard} from '@project/jwt';
+import {NAME_FILE} from '@project/const';
+import {UploadFile} from '@project/upload-file';
 
 
 @Controller('user')
@@ -31,8 +36,16 @@ export class UserController {
   constructor(
     @Inject(applicationConfigUser.KEY)
     private readonly applicationConfig: ConfigType<typeof applicationConfigUser>,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly uploadFile: UploadFile
   ){}
+
+@Post('/avatar')
+@UseInterceptors(FileInterceptor(NAME_FILE))
+public async uploadAvatar(@UploadedFile() file: Express.Multer.File) {
+  const avatarPath = await this.uploadFile.execute(file, this.applicationConfig.uploadDirectory)
+  return avatarPath
+}
 
 @UseInterceptors(CheckEmailDatabaseInterceptor)
 @Post('/authorization')

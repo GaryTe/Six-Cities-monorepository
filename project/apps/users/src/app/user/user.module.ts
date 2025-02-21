@@ -9,6 +9,7 @@ import {CreateAccessToken} from './create-access-token';
 import {User, UserSchema} from './user.shema';
 import {JwtModule} from '@project/jwt';
 import {getRabbitMQOptions} from '@project/config';
+import {UploadFile} from '@project/upload-file';
 
 @Module({
   imports: [
@@ -19,6 +20,11 @@ import {getRabbitMQOptions} from '@project/config';
     )
   ],
   controllers: [UserController],
-  providers: [UserService, UserRepository, CreateAccessToken]
+  providers: [
+    UserService,
+    UserRepository,
+    CreateAccessToken,
+    UploadFile
+  ]
 })
 export class UserModule {}

@@ -15,7 +15,8 @@ export default registerAs('application', (): ApplicationConfigUser => {
     jwtAlgorithm: process.env.JWT_ALGORITHM,
     typ: process.env.TYP,
     jwtAccessExpired: process.env.JWT_ACCESS_EXPIRED,
-    staticDirectory: process.env.STATIC_DIRECTORY
+    staticDirectory: process.env.STATIC_DIRECTORY,
+    uploadDirectory: process.env.UPLOAD_DIRECTORY,
   };
 
   const applicationEnvironment = plainToInstance(

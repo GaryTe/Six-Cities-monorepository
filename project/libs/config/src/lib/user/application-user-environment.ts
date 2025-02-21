@@ -55,4 +55,9 @@ export class ApplicationUserEnvironment {
     message: EnvValidationMessageForAppUser.StaticDirectory
   })
   public staticDirectory: string;
+
+  @IsString({
+    message: EnvValidationMessageForAppUser.UploadDirectory
+  })
+  public uploadDirectory: string;
 }

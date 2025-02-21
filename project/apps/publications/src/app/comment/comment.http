@@ -13,4 +13,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjFlZjZlM
 
 ###
 ## Список комментариев
-GET  http://localhost:5000/api/comment/d7cecf35-038c-426a-aebc-4a9d41f8c40e HTTP/1.1
+GET  http://localhost:5000/api/comment/d7cecf35-038c-426a-aebc-4a9d41f8c400 HTTP/1.1

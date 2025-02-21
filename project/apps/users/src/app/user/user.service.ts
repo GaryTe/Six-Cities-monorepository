@@ -6,7 +6,7 @@ import {AuthenticationUserDto} from './dto/authentication-user.dto';
 import {UserRepository} from './user.repository';
 import {PATH_STATIC_ICON, EXCHANG_NAME, ROUTING_KEY} from '@project/const';
 import {CreateAccessToken} from './create-access-token';
-import {Comment, Author} from '@project/type';
+import {Comment} from '@project/type';
 
 @Injectable()
 export class UserService {

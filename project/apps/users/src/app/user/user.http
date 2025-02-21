@@ -3,9 +3,10 @@ POST  http://localhost:3000/api/user/authorization HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Vlad Ivanov",
-  "email": "Vlad@mail.com",
-  "password": "1984VI",
+  "name": "Sveta Pugach",
+  "email": "Sveta@mail.com",
+  "password": "1984SP",
+  "avatar": "/upload/2025/02/485194d2-8e1e-4ab8-b4e9-97b0c93fd2f1.jpg",
   "typeUser": "pro"
 }
 
@@ -38,3 +39,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjFlZjZlM
 # Exit from the closed part of the application
 DELETE   http://localhost:3000/api/user/ HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjFlOGIwOWM3ZWE1NzAyNjYzZjljNiIsImVtYWlsIjoiQWxla0BtYWlsLmNvbSIsIm5hbWUiOiJBbGVrIEl2YW5vdiIsImlhdCI6MTczOTcxMjY5NSwiZXhwIjoxNzM5Nzk5MDk1fQ.JlCHJose5U-fvEee_gFub2T5apYik-jkppaEvZBInXg
+
+###
+# Загрузка аватара
+POST http://localhost:3000/api/user/avatar HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="coast.jpg"
+Content-Type: image
+
+< C:/Users/User/Desktop/six-cities/markup/img/coast.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

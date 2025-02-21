@@ -13,11 +13,13 @@ import {appDataSource, Rent} from '@project/config';
 export class CheckIdRentDatabaseInterceptor implements NestInterceptor {
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<unknown>> {
-    const {body: {idRent}} = context.switchToHttp().getRequest();
+    const {body: {idRent}, params} = context.switchToHttp().getRequest();
+
+    const id = idRent ?? params.idRent
 
       const dataRent = await appDataSource.manager.findOne(Rent, {
         where: {
-          id: idRent,
+          id: id,
         },
     })
 

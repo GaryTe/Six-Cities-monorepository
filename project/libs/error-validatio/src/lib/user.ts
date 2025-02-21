@@ -15,7 +15,8 @@ export enum EnvValidationMessageForAppUser {
   JwtAlgorithm = 'Specify the environment variable JWT_ALGORITHM in the file .env in the Users application.',
   Typ = 'Specify the environment variable TYP in the file .env in the Users application.',
   JwtAccessExpired = 'Specify the environment variable JWT_ACCESS_EXPIRED in the file .env in the Users application.',
-  StaticDirectory = 'Specify the environment variable STATIC_DIRECTORY in the file .env in the Users application.'
+  StaticDirectory = 'Specify the environment variable STATIC_DIRECTORY in the file .env in the Users application.',
+  UploadDirectory = 'Specify the environment variable UPLOAD_DIRECTORY in the file .env in the Users application.'
 }
 
 export const UserDtoValidationMessageForAppUser = {
