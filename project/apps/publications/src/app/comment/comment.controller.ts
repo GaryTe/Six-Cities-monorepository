@@ -46,6 +46,7 @@ export class CommentController {
       return fillObject(CommentRdo, dataComment)
     }
 
+  @UseInterceptors(CheckIdRentDatabaseInterceptor)
   @Get('/:idRent')
     public async getAllComment(@Param('idRent') idRent: string) {
       const dataCommentList = await this.commentService.getAllComment(idRent);

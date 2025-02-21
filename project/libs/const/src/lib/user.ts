@@ -7,3 +7,5 @@ export const MIN_LENQTH = 1;
 export const MAX_LENQTH = 15;
 export const MIN_LENQTH_PASSWORD = 6;
 export const MAX_LENQTH_PASSWORD = 12;
+export const NAME_FILE = 'avatar';
+export const ROUTE_UPLOAD = '/upload';

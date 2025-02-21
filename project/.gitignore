@@ -43,3 +43,7 @@ Thumbs.db
 
 # Environments
 *.env
+
+# Upload File
+**/upload/*
+!.gitkeep
